@@ -1,0 +1,12 @@
+class Solution {
+    public int findComplement(int num) {
+       // this generate the position of the leftmost setbit the representation of num
+       int x = (int)(Math.log(num)/Math.log(2))+1;
+       // in complement we need to revert the bits and for reverting them we make the use of XOR bitwise operator.
+        for(int i=0;i<x;i++)
+        {
+            num = (num ^ (1 << i));
+        }
+        return num;
+    }
+}
