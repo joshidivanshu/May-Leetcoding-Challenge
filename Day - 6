@@ -1,0 +1,21 @@
+class Solution {
+    // made use of moore's voting algorithm since it was given that majority element always exists in the array so we don't need to confirm whether the output is majority or not.
+    public int majorityElement(int[] arr) {
+        //  by moore's voting algorithm
+        int res = 0,count = 1;
+        int n = arr.length;
+        for(int i=1;i<n;i++)
+        {
+            if(arr[res] == arr[i])
+                count++;
+            else
+                count--;
+            if(count == 0)
+            {
+                res = i;
+                count = 1;
+            }
+        }
+        return arr[res];
+    }
+}
