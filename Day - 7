@@ -1,0 +1,31 @@
+// here we need to check whether the nodes are present at same level and to also check they should have different parents.
+class Solution {
+    class Pair{
+        TreeNode parent;
+        int level;
+        
+        Pair(TreeNode parent, int level){
+            this.parent = parent;
+            this.level = level;
+        }
+    }
+    
+    public boolean isCousins(TreeNode root, int x, int y) {
+        Pair pair1 = isCousins2(root, x, null, 0);
+        Pair pair2 = isCousins2(root, y, null, 0);
+
+        return pair1.level == pair2.level && pair1.parent != pair2.parent;
+    }
+    
+    Pair isCousins2(TreeNode root, int val, TreeNode parent, int level){
+        if(root == null){
+            return null;
+        }
+        if(root.val == val){
+            return new Pair(parent, level);
+        }
+        Pair leftPair = isCousins2(root.left, val, root, level + 1);
+        Pair rightPair = isCousins2(root.right, val, root, level + 1);
+        return leftPair == null ? rightPair : leftPair;
+    }
+}
