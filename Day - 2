@@ -1,0 +1,16 @@
+class Solution {
+    public int numJewelsInStones(String J, String S) {
+        int arr[] = new int[256];
+        // first we mark the presence of all kinds of stones and jewels.
+        for(int i=0;i<S.length();i++)
+            arr[S.charAt(i)]++;
+        int count = 0;
+        //here we know what type represent jewels so we count the number of jewels present.
+        for(int i=0;i<J.length();i++)
+        {
+            if(arr[J.charAt(i)]>0)
+                count += arr[J.charAt(i)];
+        }
+        return count;
+    }
+}
