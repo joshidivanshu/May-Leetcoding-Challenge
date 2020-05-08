@@ -1,0 +1,22 @@
+public class Solution extends VersionControl {
+// since the array is given in sorted form we use binary search to optimally solve it.
+    public int firstBadVersion(int n) {
+        int left = 1,right =n;
+        int ans = -1;
+        while(left<=right)
+        {
+            int mid = left+(right-left)/2; //if no.'s are too large so, to avoid overflow (left+right)/2 <-this might cause an overflow
+            if(isBadVersion(mid))
+            {
+                ans = mid;
+                right = mid-1;
+            }
+            else
+            {
+                left = mid+1;
+            }
+        }
+        return ans;
+        
+    }
+}
