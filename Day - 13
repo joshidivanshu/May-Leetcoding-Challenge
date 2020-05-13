@@ -1,0 +1,38 @@
+class Solution {
+    // greedy algorithm to solve this problem
+    public String removeKdigits(String num, int k) {
+        if(k == num.length())
+            return "0";
+        if(k == 0)
+            return num;
+        int n = num.length();
+        Stack<Character> st = new Stack<Character>();
+        int i =0;
+        while(i<n)
+        {
+            // greedy choice
+            while(k > 0 && !st.isEmpty() && st.peek() > num.charAt(i))
+            {
+                st.pop();
+                k--;
+            }
+            st.push(num.charAt(i++));   
+        }
+        // for cases when there is repetitive data
+        while(k>0)
+        {
+            st.pop();
+            k--;
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        while(!st.isEmpty())
+            sb.append(st.pop());
+        
+        sb.reverse();
+        // for extra leading zeroes
+        while(sb.length() > 1  && sb.charAt(0) == '0')
+            sb.deleteCharAt(0);
+        return new String(sb); 
+    }
+}
