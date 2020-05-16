@@ -1,0 +1,18 @@
+// this follows the same approach as the intital ones we connect all the odd nodes and side by side connect all the even nodes and then make the odd node point to the even node and return the head of the linkedlist generated
+class Solution {
+    public ListNode oddEvenList(ListNode head) {
+        if( head == null)
+            return null;
+        ListNode odd = head,even = head.next, evenHead = even;
+        while(even != null && even.next != null)
+        {
+            odd.next = even.next;
+            odd = odd.next;
+            even.next = odd.next;
+            even = even.next;
+        }
+        odd.next = evenHead;
+        return head;
+    }
+}
+// both the solutions are same ,this is easier to understand as compared to the last one.Both have same runtime . T(n) = O(n) and A.S(n) = O(1)
