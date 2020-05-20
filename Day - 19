@@ -1,0 +1,25 @@
+class StockSpanner {
+    int[] arr;
+    int size;
+    Stack<Integer> st = new Stack();
+    public StockSpanner() {
+        arr = new int[10000];
+        size = 0;
+    }
+    
+    public int next(int price) {
+        arr[size] = price;
+        int max = 0;
+        while(!st.isEmpty()&&arr[st.peek()]<=price){
+            stack.pop();
+        }
+        int index = -1;
+        if(!st.isEmpty()){
+            index = st.peek();
+        }
+        st.push(size);
+        max = size-index;
+        size++;
+        return max;
+    }
+}
