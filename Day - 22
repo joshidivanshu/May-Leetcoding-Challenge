@@ -1,4 +1,4 @@
-// gives memory limit exceeded error but passes all the test cases check the other Day 22 solution
+
 class Solution {
     public String frequencySort(String s) {
         Map<Character,Integer> hm = new HashMap<>();
@@ -20,20 +20,16 @@ class Solution {
                                  return (o2.getValue().compareTo(o1.getValue()));
                              }
                          });
-        Map<Character,Integer> temp = new LinkedHashMap<>();
+        StringBuilder res = new StringBuilder();
         for(Map.Entry<Character,Integer> aa : list)
         {
-            temp.put(aa.getKey(),aa.getValue());
+            int z = aa.getValue();
+            char c = aa.getKey();
+            for(int i=0;i<z;i++)
+                res.append(c);
         }
-        String res = "";
-        for(Map.Entry<Character,Integer> e : temp.entrySet())
-        {
-            int t = e.getValue();
-            char z = e.getKey();
-            for(int i=0;i<t;i++)
-                res += z;
-        }
-         return res;
+        
+        return new String(res);
         
     }
 }
