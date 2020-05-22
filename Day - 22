@@ -1,0 +1,38 @@
+class Solution {
+    public String frequencySort(String s) {
+        Map<Character,Integer> hm = new HashMap<>();
+        int n = s.length();
+        for(int i=0;i<n;i++)
+        {
+            char ind = s.charAt(i);
+            if(!hm.containsKey(ind))
+                hm.put(ind,1);
+            else
+                hm.put(ind,hm.get(ind)+1);
+        }
+        List<Map.Entry<Character,Integer>> list = new LinkedList<Map.Entry<Character,Integer>>(hm.entrySet());
+        Collections.sort(list, new Comparator<Map.Entry<Character,Integer>>()
+                         {
+                             public int compare(Map.Entry<Character,Integer> o1,
+                                               Map.Entry<Character,Integer> o2)
+                             {
+                                 return (o2.getValue().compareTo(o1.getValue()));
+                             }
+                         });
+        Map<Character,Integer> temp = new LinkedHashMap<>();
+        for(Map.Entry<Character,Integer> aa : list)
+        {
+            temp.put(aa.getKey(),aa.getValue());
+        }
+        String res = "";
+        for(Map.Entry<Character,Integer> e : temp.entrySet())
+        {
+            int t = e.getValue();
+            char z = e.getKey();
+            for(int i=0;i<t;i++)
+                res += z;
+        }
+         return res;
+        
+    }
+}
