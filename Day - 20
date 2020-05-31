@@ -1,0 +1,48 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    TreeNode ans = null;
+    public int kthSmallest(TreeNode root, int k) {
+        
+        fun(root, k);
+        return ans.val;
+    }
+    
+    int fun(TreeNode root, int k){
+        if(root == null){
+            return 0;
+        }
+		// if answer is already found, return
+        if(ans != null){
+            return -1;
+        }
+		
+        if(k == 1){
+            while(root.left != null){
+                root = root.left;
+            }
+            ans = root;
+            return -1;
+        }
+        
+		
+        int left = fun(root.left, k);
+        if(ans == null && left == k-1){
+            ans = root;
+            return -1;
+        }
+        
+        
+        int right = fun(root.right, k-left-1);
+		//return number of nodes of the tree 
+        return left+right+1;
+    }
+    
+}
